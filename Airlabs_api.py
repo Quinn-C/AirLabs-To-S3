@@ -3,11 +3,9 @@
 
 import csv
 import requests
+import params
 
-
-API_PARAMS = {
-    'api_key': '991dc23a-2f49-47a4-a978-d99ae474a3bd'
-}
+API_PARAMS = params.API_PARAMS
 
 HEATHROW_LFT_TOP = {
     'lat': 51.479717,
