@@ -16,6 +16,27 @@ pytest = "^7.1.2"
 black = "^22.6.0"
 types-requests = "^2.28.8"
 
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist=py310
+isolated_build=true
+skipsdist=true
+
+[testenv]
+passenv=*
+platform=linux
+whitelist_externals=poetry
+skip_install=true
+commands=
+  poetry black Airlabs_api.py tests/
+  poetry run pylint Airlabs_api.py
+  poetry run mypy Airlabs_api.py
+  poetry run mypy tests/
+  poetry run pylint tests/
+  poetry run pytest tests/
+ """
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
