@@ -57,8 +57,9 @@ def to_csv(cleaned_data):
         for row in cleaned_data:
             writer.writerow(row)
 
+
 def main():
-    """ Run all functions in a specific order """
+    """Run all functions in a specific order"""
     all_flights_data = get_flight_data()
     flights_in_heathrow = get_flights_in_heathrow(all_flights_data)
     cleaned_flights_data = clean_flight_data(flights_in_heathrow)
