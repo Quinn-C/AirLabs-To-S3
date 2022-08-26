@@ -42,3 +42,8 @@ This project ingests data from [AirLabs API](https://airlabs.co/docs/flights) on
 
 - Frequency:
 - How to modify the data?
+
+## Limitations
+
+1. Using free api with limited filter features, causing extracting extra data that don't use.
+
