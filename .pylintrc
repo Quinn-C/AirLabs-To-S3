@@ -1,0 +1,12 @@
+[FORMAT]
+
+max-line-length=80
+
+max-module-lines=1000
+
+
+[DESIGN]
+
+max-args=7
+
+max-attributes=7
