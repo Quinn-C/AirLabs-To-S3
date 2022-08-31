@@ -22,7 +22,9 @@ def main():
     flights_in_heathrow = get_flights_in_heathrow(all_flights_data)
     cleaned_flights_data = clean_flight_data(flights_in_heathrow)
     to_csv(cleaned_flights_data)
-    upload_to_s3("instance/flight_data.csv", "testingcopy", "jchen/flight_data.csv")
+    upload_to_s3(
+        "instance/flight_data.csv", "testingcopy", "jchen/flight_data.csv"
+    )
 
 
 if __name__ == "__main__":
