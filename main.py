@@ -1,10 +1,10 @@
 """ Download the data with initial cleanup and export to a csv file"""
-
+from datetime import date
 from fetch_data import get_flight_data
 from clean_data import (
-    get_flights_in_heathrow,
-    clean_flight_data,
+    clean_flight_data
 )
+
 from file_conversion import to_csv
 
 from s3 import upload_to_s3
@@ -19,11 +19,12 @@ def main():
     5. Upload the csv file to aws s3
     """
     all_flights_data = get_flight_data()
-    flights_in_heathrow = get_flights_in_heathrow(all_flights_data)
-    cleaned_flights_data = clean_flight_data(flights_in_heathrow)
+    # flights_in_north_amer = get_flights_in_north_amer(all_flights_data)
+    cleaned_flights_data = clean_flight_data(all_flights_data)
     to_csv(cleaned_flights_data)
     upload_to_s3(
-        "instance/flight_data.csv", "testingcopy", "jchen/flight_data.csv"
+        "instance/flight_data.csv", "testingcopy",
+        f"jchen/dt={str(date.today())}/flight_data.csv"
     )
 
 
