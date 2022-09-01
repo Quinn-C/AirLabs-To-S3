@@ -14,29 +14,6 @@ class CleanedFlights(TypedDict):
     dep_airport: str
     arr_airport: str
 
-NORTH_AMER_LEFT_TOP = {"latitude": 71.3, "longitude": -167.3}
-
-NORTH_AMER_RIGHT_BTM = {"latitude": 7.2, "longitude": -77.8}
-
-
-def is_in_north_amer(flight_lat: float, flight_lng: float) -> bool:
-    """Helper function: Check if the flight is inside the Heathrow airport"""
-    if NORTH_AMER_RIGHT_BTM["latitude"] < flight_lat < NORTH_AMER_LEFT_TOP["latitude"]:
-        if NORTH_AMER_LEFT_TOP["longitude"] < flight_lng < NORTH_AMER_RIGHT_BTM["longitude"]:
-            return True
-    return False
-
-
-def get_flights_in_north_amer(
-    flight_data: list[FlightInfo],
-) -> Generator[FlightInfo, None, None]:
-    """Store real-time flights in north america in a generator"""
-    north_amer_flight_data = (
-        fl for fl in flight_data if is_in_north_amer(fl["lat"], fl["lng"])
-    )
-    # use flight.lat and flight.lng can avoid the mypy error,
-    # but the code does not work
-    return north_amer_flight_data
 
 def rm_unuseful_cols(flight: FlightInfo):
     """ Helper funciton: filter out unuseful columns from each flight"""
