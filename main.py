@@ -19,7 +19,6 @@ def main():
     5. Upload the csv file to aws s3
     """
     all_flights_data = get_flight_data()
-    # flights_in_north_amer = get_flights_in_north_amer(all_flights_data)
     cleaned_flights_data = clean_flight_data(all_flights_data)
     to_csv(cleaned_flights_data)
     upload_to_s3(
