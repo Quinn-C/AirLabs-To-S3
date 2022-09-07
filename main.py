@@ -1,4 +1,4 @@
-""" Download the data with initial cleanup and export to a csv file"""
+"""Airlabs API to S3 transfer"""
 from datetime import date
 from fetch_data import get_flight_data
 from clean_data import (
@@ -11,12 +11,11 @@ from s3 import upload_to_s3
 
 
 def main():
-    """From fetching data from api to local csv file with 5 steps below:
-    1. Fetching data from api
-    2. Only keep flights data in London Heathrow Airport in real-time
-    3. Cleaned unuseful data for each flights in Heathrow Airport
-    4. Dump the cleaned data into a csv file
-    5. Upload the csv file to aws s3
+    """From fetching data from api to local csv file with 4 steps below:
+    1. Fetch data from api - get all global flights data in a list of JSON
+    2. Remove unuseful fields for each flight in the list
+    3. Dump the cleaned data into a csv file
+    4. Upload the csv file to aws s3 testingcopy bucket
     """
     all_flights_data = get_flight_data()
     cleaned_flights_data = clean_flight_data(all_flights_data)
