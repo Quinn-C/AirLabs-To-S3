@@ -4,7 +4,7 @@ from typing import Generator
 from structures.data_classes import FlightInfo, CleanedFlightInfo
 
 def rm_unuseful_cols(flight: FlightInfo) -> CleanedFlightInfo:
-    """ Helper funciton: filter out unuseful columns from each flight"""
+    """ Remove unuseful fields and renaming them to be more understandable"""
     cleaned_flight_info = CleanedFlightInfo(
         latitude = flight.lat,
         longitude = flight.lng,
