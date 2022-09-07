@@ -1,42 +1,17 @@
 """ Function used for fetching data from api"""
 
-# from dataclasses import dataclass
-from typing import TypedDict
+from typing import Generator
 import requests
 import params
-
-# @dataclass
-class FlightInfo(TypedDict):
-    """Original each flight data"""
-    hex_address: str
-    reg_number: str
-    flag: str
-    latitude: float
-    longitude: float
-    alt: int
-    head_direction: int
-    horizontal_speed: int
-    vertical_speed: int
-    squawk: str
-    flight_number: str
-    flight_icao: str
-    flight_iata: str
-    dep_airport_icao: str
-    dep_airport_iata: str
-    arr_airport_icao: str
-    arr_airport_iata: str
-    airline_icao: str
-    airline_iata: str
-    aircraft_icao: str
-    updated: int
-    status: str
-
+from structures.data_classes import FlightInfo
 
 
 API_PARAMS = params.API_PARAMS
 
 
-def get_flight_data(api_params=API_PARAMS) -> list[FlightInfo]:
+def get_flight_data(api_params=API_PARAMS) -> Generator[FlightInfo, None, None]:
     """Download the real-time data from the api"""
     api_result = requests.get("https://airlabs.co/api/v9/flights", api_params)
-    return api_result.json()["response"]
+    all_flights = api_result.json()["response"]
+    all_flights_data= (FlightInfo(**flight) for flight in all_flights)
+    return all_flights_data
